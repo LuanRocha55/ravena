@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Para Minha Ravena</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body
+    style="font-family: 'Montserrat', sans-serif; background: #0b0914; color: #fff; margin: 0; padding: 0; overflow: hidden; display: flex; justify-content: center; align-items: center; min-height: 100vh; -webkit-tap-highlight-color: transparent;">
+
+    <div id="story-container" onpointerdown="handleTap(event)"
+        style="width: 100vw; height: 100vh; max-width: 450px; max-height: 900px; background: linear-gradient(to bottom, #110c1a, #2b1027, #4a1525); position: relative; display: flex; flex-direction: column; justify-content: space-between; padding: 40px 20px; box-sizing: border-box;">
+
+        <div
+            style="display: flex; gap: 4px; width: 100%; position: absolute; top: 15px; left: 0; padding: 0 20px; box-sizing: border-box; z-index: 25;">
+            <div style="flex: 1; height: 3px; background: rgba(255,255,255,0.2); border-radius: 2px; overflow: hidden;">
+                <div id="bar0" style="width: 0%; height: 100%; background: #ff6b6b;"></div>
+            </div>
+            <div style="flex: 1; height: 3px; background: rgba(255,255,255,0.2); border-radius: 2px; overflow: hidden;">
+                <div id="bar1" style="width: 0%; height: 100%; background: #ff6b6b;"></div>
+            </div>
+            <div style="flex: 1; height: 3px; background: rgba(255,255,255,0.2); border-radius: 2px; overflow: hidden;">
+                <div id="bar2" style="width: 0%; height: 100%; background: #ff6b6b;"></div>
+            </div>
+            <div style="flex: 1; height: 3px; background: rgba(255,255,255,0.2); border-radius: 2px; overflow: hidden;">
+                <div id="bar3" style="width: 0%; height: 100%; background: #ff6b6b;"></div>
+            </div>
+            <div style="flex: 1; height: 3px; background: rgba(255,255,255,0.2); border-radius: 2px; overflow: hidden;">
+                <div id="bar4" style="width: 0%; height: 100%; background: #ff6b6b;"></div>
+            </div>
+        </div>
+
+        <div id="story0"
+            style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; width: 100%; opacity: 1; transition: opacity 0.3s ease; z-index: 5;">
+            <div style="color: #ff6b6b; font-size: 40px; margin-bottom: 10px; animation: pulse 1.5s infinite;">❦</div>
+            <h1
+                style="font-family: 'Playfair Display', serif; font-size: 3.2em; margin: 0; background: -webkit-linear-gradient(#ff6b6b, #ff8e53); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                Ravena</h1>
+            <p
+                style="font-size: 0.75em; letter-spacing: 5px; text-transform: uppercase; color: #cca7a7; margin-top: 15px;">
+                Minha noiva, nossa história</p>
+        </div>
+
+        <div id="story1"
+            style="display: none; flex-direction: column; justify-content: center; align-items: center; height: 100%; width: 100%; opacity: 0; transition: opacity 0.3s ease; z-index: 5; padding: 0 15px; box-sizing: border-box; text-align: center;">
+            <div style="color: #ff6b6b; font-size: 24px; margin-bottom: 15px;">💍❤️</div>
+            <p style="font-size: 1.2em; line-height: 1.7; font-weight: 400; color: #fff;">O Início de Tudo</p>
+            <div id="contadorNamoro"
+                style="font-size: 1em; color: #ff6b6b; margin: 15px 0; font-weight: 700; letter-spacing: 1px;">0 dias,
+                0h, 0m, 0s</div>
+            <p style="font-size: 1.05em; line-height: 1.8; color: #e5d5d5; margin-top: 10px; font-weight: 300;">
+                17 de Dezembro de 2025. O dia em que decidimos caminhar lado a lado. Desde aquele momento, cada segundo
+                com você ganhou um novo significado.
+            </p>
+        </div>
+
+        <div id="story2"
+            style="display: none; flex-direction: column; justify-content: center; align-items: center; height: 100%; width: 100%; opacity: 0; transition: opacity 0.3s ease; z-index: 5; padding: 0 10px; box-sizing: border-box;">
+            <p style="font-size: 1.3em; line-height: 1.8; font-weight: 300; color: #e5d5d5; text-align: center;">
+                "E no seu olhar eu posso ver <br> o pôr do sol escurecer..."
+            </p>
+            <p
+                style="font-size: 1.05em; line-height: 1.8; color: #cca7a7; margin-top: 20px; font-weight: 300; text-align: center;">
+                Olhar para você todos os dias e ver tudo o que estamos construindo é a minha maior certeza. Você é o meu
+                lugar seguro.
+            </p>
+        </div>
+
+        <div id="story3"
+            style="display: none; flex-direction: column; justify-content: center; align-items: center; height: 100%; width: 100%; opacity: 0; transition: opacity 0.3s ease; z-index: 5; padding: 0 15px; box-sizing: border-box; text-align: center;">
+            <div style="color: #ff8e53; font-size: 24px; margin-bottom: 15px;">👶🏼👶🏼</div>
+            <p style="font-size: 1.2em; line-height: 1.7; font-weight: 400; color: #fff;">Levi e Serena</p>
+            <div id="contadorBebes"
+                style="font-size: 1em; color: #ff8e53; margin: 15px 0; font-weight: 700; letter-spacing: 1px;">0 dias,
+                0h, 0m, 0s</div>
+            <p style="font-size: 1.05em; line-height: 1.8; color: #e5d5d5; margin-top: 10px; font-weight: 300;">
+                Dois meses descobrindo que o nosso amor multiplicou. Ver você como mãe deles só me dá mais certeza do
+                nosso "para sempre".
+            </p>
+        </div>
+
+        <div id="story4"
+            style="display: none; flex-direction: column; justify-content: center; align-items: center; height: 100%; width: 100%; opacity: 0; transition: opacity 0.3s ease; z-index: 5; text-align: center;">
+
+            <button id="revealBtn" onclick="revealSecret(event)" onpointerdown="event.stopPropagation();"
+                style="font-family: 'Montserrat', sans-serif; background: linear-gradient(45deg, #ff6b6b, #ff8e53); border: none; color: white; padding: 18px 30px; border-radius: 50px; font-weight: bold; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8em; width: 85%; box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3); z-index: 50; position: relative;">
+                Tocar para ler o segredo
+            </button>
+
+            <div id="conteudoOculto"
+                style="display: none; width: 100%; opacity: 0; transition: opacity 0.6s ease; text-align: center; z-index: 5;">
+                <p
+                    style="font-family: 'Playfair Display', serif; font-style: italic; color: #ff8e53; font-weight: bold; font-size: 1.35em; line-height: 1.6; margin-bottom: 40px; padding: 0 15px;">
+                    As pessoas nunca entenderão, porque nunca saberão o que é um amor e uma família como a nossa. Te amo
+                    hoje e sempre!
+                </p>
+
+                <a href="https://open.spotify.com/intl-pt/track/2TE9rkhJYDctxgzak0AnSb?si=6b946fc000614f45"
+                    target="_blank" onpointerdown="event.stopPropagation();"
+                    style="text-decoration: none; width: 85%; max-width: 280px; display: inline-block; position: relative; z-index: 60;">
+                    <div
+                        style="background-color: #1DB954; color: white; padding: 15px; border-radius: 50px; display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: bold; font-size: 0.9em; box-shadow: 0 10px 25px rgba(29, 185, 84, 0.4);">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm5.508 17.304c-.216.336-.648.444-.984.228-2.736-1.668-6.18-2.052-10.236-1.128-.384.084-.768-.156-.852-.54-.084-.384.156-.768.54-.852 4.452-1.02 8.268-.576 11.316 1.284.336.216.444.648.216.984zm1.476-3.264c-.276.444-.852.588-1.296.312-3.132-1.92-7.908-2.484-11.604-1.356-.504.156-1.032-.132-1.188-.636-.156-.504.132-1.032.636-1.188 4.224-1.284 9.504-.636 13.14 1.596.444.276.588.852.312 1.284zm.132-3.444C15.096 8.28 8.448 8.064 4.608 9.228c-.612.18-1.248-.156-1.44-.756s.156-1.248.756-1.44c4.428-1.344 11.772-1.092 16.5 1.716.552.324.732 1.032.408 1.584-.324.552-1.032.732-1.584.408z" />
+                        </svg>
+                        Ouvir Seu Astral
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let currentStory = 0;
+        const totalStories = 5;
+        const storyDuration = 6000;
+        let storyTimeout;
+        let startTimestamp;
+        let progressInterval;
+        let secretRevealed = false;
+
+        // DATAS DOS CONTADORES
+        const dataNamoro = new Date(2025, 11, 17, 20, 0);
+        const dataNascimentoBebes = new Date(2026, 2, 21, 10, 0);
+
+        function startStoryTimer() {
+            clearTimeout(storyTimeout);
+            clearInterval(progressInterval);
+            startTimestamp = Date.now();
+
+            progressInterval = setInterval(() => {
+                let elapsed = Date.now() - startTimestamp;
+                let percentage = Math.min((elapsed / storyDuration) * 100, 100);
+                document.getElementById('bar' + currentStory).style.width = percentage + '%';
+
+                if (currentStory === 1) atualizarContadorGenerico(dataNamoro, 'contadorNamoro');
+                if (currentStory === 3) atualizarContadorGenerico(dataNascimentoBebes, 'contadorBebes');
+            }, 30);
+
+            storyTimeout = setTimeout(() => {
+                if (currentStory < totalStories - 1) changeStory(1);
+            }, storyDuration);
+        }
+
+        function atualizarContadorGenerico(dataAlvo, idElemento) {
+            const agora = new Date();
+            let diff = Math.abs(agora - dataAlvo);
+            const d = Math.floor(diff / 86400000);
+            const h = Math.floor((diff % 86400000) / 3600000);
+            const m = Math.floor((diff % 3600000) / 60000);
+            const s = Math.floor((diff % 60000) / 1000);
+
+            const elemento = document.getElementById(idElemento);
+            if (elemento) {
+                elemento.innerText = `${d} dias, ${h}h, ${m}m, ${s}s`;
+            }
+        }
+
+        function handleTap(event) {
+            // Se o clique veio no botão ou dentro do conteúdo do Spotify, interrompe
+            if (event.target.id === 'revealBtn' || (document.getElementById('conteudoOculto') && document.getElementById('conteudoOculto').contains(event.target))) {
+                return;
+            }
+
+            createHeartManual(event);
+
+            // Trava navegação se o segredo já foi aberto
+            if (currentStory === totalStories - 1 && secretRevealed) return;
+
+            const container = document.getElementById('story-container');
+            const rect = container.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+
+            if (x < rect.width * 0.35) {
+                changeStory(-1);
+            } else {
+                changeStory(1);
+            }
+        }
+
+        function changeStory(direction) {
+            let next = currentStory + direction;
+            if (next >= 0 && next < totalStories) {
+                document.getElementById('story' + currentStory).style.display = 'none';
+                document.getElementById('story' + currentStory).style.opacity = '0';
+
+                currentStory = next;
+
+                let f = document.getElementById('story' + currentStory);
+                f.style.display = 'flex';
+                setTimeout(() => f.style.opacity = '1', 50);
+
+                for (let i = 0; i < totalStories; i++) {
+                    document.getElementById('bar' + i).style.width = i < currentStory ? "100%" : "0%";
+                }
+                startStoryTimer();
+            }
+        }
+
+        function createHeartManual(e) {
+            const container = document.getElementById('story-container');
+            const rect = container.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            if (isNaN(x) || isNaN(y)) return;
+
+            const h = document.createElement('div');
+            h.innerText = '❤';
+            h.style.cssText = `position:absolute; left:${x - 10}px; top:${y - 10}px; font-size:24px; color:#ff6b6b; z-index:100; pointer-events:none; animation: float 1s forwards;`;
+            container.appendChild(h);
+            setTimeout(() => h.remove(), 1000);
+        }
+
+        function revealSecret(e) {
+            if (e) e.stopPropagation();
+
+            clearInterval(progressInterval);
+            clearTimeout(storyTimeout);
+            document.getElementById('bar' + currentStory).style.width = "100%";
+
+            const btn = document.getElementById('revealBtn');
+            const rect = btn.getBoundingClientRect();
+            const midX = rect.left + (rect.width / 2);
+            const midY = rect.top + (rect.height / 2);
+
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    let driftX = midX + (Math.random() * 80 - 40);
+                    let driftY = midY + (Math.random() * 40 - 20);
+                    createHeartManual({ clientX: driftX, clientY: driftY });
+                }, i * 40);
+            }
+
+            secretRevealed = true;
+            btn.style.display = 'none';
+
+            const c = document.getElementById('conteudoOculto');
+            c.style.display = 'block';
+            setTimeout(() => c.style.opacity = '1', 50);
+        }
+
+        window.onload = startStoryTimer;
+    </script>
+
+    <style>
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-80px) rotate(20deg);
+            }
+        }
+    </style>
+</body>
+
+</html>
