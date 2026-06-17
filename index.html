@@ -6,101 +6,152 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Para Minha Ravena</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body
-    style="font-family: 'Montserrat', sans-serif; background: #0b0914; color: #fff; margin: 0; padding: 0; overflow: hidden; display: flex; justify-content: center; align-items: center; min-height: 100vh; -webkit-tap-highlight-color: transparent;">
+    style="font-family: 'Montserrat', sans-serif; background: #0b0914; color: #fff; margin: 0; padding: 0; overflow: hidden; display: flex; justify-content: center; align-items: center; min-height: 100vh; -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user-select: none;">
 
-    <div id="story-container" onclick="handleTap(event)"
-        style="width: 100vw; height: 100vh; max-width: 450px; max-height: 900px; background: linear-gradient(to bottom, #110c1a, #2b1027, #4a1525); position: relative; display: flex; flex-direction: column; justify-content: space-between; padding: 40px 20px; box-sizing: border-box;">
+    <div id="story-container" onclick="handleTap(event)" role="button" aria-label="Navegar pelas histórias" tabindex="0"
+        style="width: 100vw; height: 100vh; max-width: 450px; max-height: 900px; position: relative; display: flex; flex-direction: column; justify-content: space-between; padding: 40px 20px; box-sizing: border-box; overflow: hidden;">
 
+        <!-- VÍDEO DE FUNDO E OVERLAY ESCURO -->
+        <video class="video-bg" autoplay loop muted playsinline>
+            <source src="background.mp4" type="video/mp4">
+        </video>
+
+        <audio id="musica-fundo" loop preload="auto">
+            <source src="musica.mp3" type="audio/mpeg">
+        </audio>
+        <div class="video-overlay"></div>
+
+        <!-- BOTÃO DE MUTE -->
+        <button id="muteBtn" onclick="toggleMute(event)"
+            style="position: absolute; top: 35px; right: 20px; z-index: 50; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: white; width: 36px; height: 36px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; backdrop-filter: blur(4px); transition: background 0.3s;">
+            <svg id="icon-unmuted" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+            </svg>
+            <svg id="icon-muted" style="display: none;" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
+        </button>
+
+        <!-- BARRAS DE PROGRESSO -->
         <div
             style="display: flex; gap: 4px; width: 100%; position: absolute; top: 15px; left: 0; padding: 0 20px; box-sizing: border-box; z-index: 25;">
-            <div style="flex: 1; height: 3px; background: rgba(255,255,255,0.2); border-radius: 2px; overflow: hidden;">
-                <div id="bar0" style="width: 0%; height: 100%; background: #ff6b6b;"></div>
+            <div class="progress-track">
+                <div id="bar0" class="progress-fill"></div>
             </div>
-            <div style="flex: 1; height: 3px; background: rgba(255,255,255,0.2); border-radius: 2px; overflow: hidden;">
-                <div id="bar1" style="width: 0%; height: 100%; background: #ff6b6b;"></div>
+            <div class="progress-track">
+                <div id="bar1" class="progress-fill"></div>
             </div>
-            <div style="flex: 1; height: 3px; background: rgba(255,255,255,0.2); border-radius: 2px; overflow: hidden;">
-                <div id="bar2" style="width: 0%; height: 100%; background: #ff6b6b;"></div>
+            <div class="progress-track">
+                <div id="bar2" class="progress-fill"></div>
             </div>
-            <div style="flex: 1; height: 3px; background: rgba(255,255,255,0.2); border-radius: 2px; overflow: hidden;">
-                <div id="bar3" style="width: 0%; height: 100%; background: #ff6b6b;"></div>
+            <div class="progress-track">
+                <div id="bar3" class="progress-fill"></div>
             </div>
-            <div style="flex: 1; height: 3px; background: rgba(255,255,255,0.2); border-radius: 2px; overflow: hidden;">
-                <div id="bar4" style="width: 0%; height: 100%; background: #ff6b6b;"></div>
+            <div class="progress-track">
+                <div id="bar4" class="progress-fill"></div>
+            </div>
+            <div class="progress-track">
+                <div id="bar5" class="progress-fill"></div>
             </div>
         </div>
 
-        <div id="story0"
-            style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; width: 100%; opacity: 1; transition: opacity 0.3s ease; z-index: 5;">
-            <div style="color: #ff6b6b; font-size: 40px; margin-bottom: 10px; animation: pulse 1.5s infinite;">❦</div>
+        <!-- FRAME 1: INTRO -->
+        <div id="story0" class="story-screen" style="display: flex; opacity: 1; transform: translateY(0);">
+            <div aria-hidden="true"
+                style="color: #ff6b6b; font-size: 40px; margin-bottom: 10px; animation: pulse 1.5s infinite;">❦</div>
             <h1
-                style="font-family: 'Playfair Display', serif; font-size: 3.2em; margin: 0; background: -webkit-linear-gradient(#ff6b6b, #ff8e53); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                style="font-family: 'Playfair Display', serif; font-size: 3.6em; margin: 0; background: -webkit-linear-gradient(#ff6b6b, #ff8e53); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: none;">
                 Ravena</h1>
             <p
-                style="font-size: 0.75em; letter-spacing: 5px; text-transform: uppercase; color: #cca7a7; margin-top: 15px;">
-                Minha noiva, nossa história</p>
+                style="font-size: 0.85em; font-weight: 500; letter-spacing: 5px; text-transform: uppercase; color: #cca7a7; margin-top: 15px;">
+                Nossa história, mês a mês</p>
         </div>
 
-        <div id="story1"
-            style="display: none; flex-direction: column; justify-content: center; align-items: center; height: 100%; width: 100%; opacity: 0; transition: opacity 0.3s ease; z-index: 5; padding: 0 15px; box-sizing: border-box; text-align: center;">
-            <div style="color: #ff6b6b; font-size: 24px; margin-bottom: 15px;">💍❤️</div>
-            <p style="font-size: 1.2em; line-height: 1.7; font-weight: 400; color: #fff;">O Início de Tudo</p>
+        <!-- FRAME 2: O NAMORO (17 DE DEZEMBRO) -->
+        <div id="story1" class="story-screen">
+            <div aria-hidden="true" style="color: #ff6b6b; font-size: 28px; margin-bottom: 10px;">💍❤️</div>
+            <p
+                style="font-family: 'Playfair Display', serif; font-size: 1.8em; margin: 0; font-weight: 600; color: #fff;">
+                O Início de Tudo</p>
             <div id="contadorNamoro"
-                style="font-size: 1em; color: #ff6b6b; margin: 15px 0; font-weight: 700; letter-spacing: 1px;">0 dias,
+                style="font-size: 1.1em; color: #ff6b6b; margin: 15px 0; font-weight: 700; letter-spacing: 1px;">0 dias,
                 0h, 0m, 0s</div>
-            <p style="font-size: 1.05em; line-height: 1.8; color: #e5d5d5; margin-top: 10px; font-weight: 300;">
-                17 de Dezembro de 2025. O dia em que decidimos caminhar lado a lado. Desde aquele momento, cada segundo
-                com você ganhou um novo significado.
+            <p style="font-size: 1.15em; line-height: 1.6; color: #e5d5d5; margin-top: 10px; font-weight: 400;">
+                17 de Dezembro de 2025. O dia em que você me escolheu foi intenso mas se prova cada segundo como o maior
+                acerto de Deus.
             </p>
         </div>
 
-        <div id="story2"
-            style="display: none; flex-direction: column; justify-content: center; align-items: center; height: 100%; width: 100%; opacity: 0; transition: opacity 0.3s ease; z-index: 5; padding: 0 10px; box-sizing: border-box;">
-            <p style="font-size: 1.3em; line-height: 1.8; font-weight: 300; color: #e5d5d5; text-align: center;">
-                "E no seu olhar eu posso ver <br> o pôr do sol escurecer..."
+        <!-- FRAME 3: A MENSAGEM / REALIDADE DE VOCÊS -->
+        <div id="story2" class="story-screen">
+            <p
+                style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.6em; line-height: 1.5; font-weight: 600; color: #fff; text-align: center; margin-bottom: 10px;">
+                "Exagerado... <br> Jogado aos teus pés... <br>Eu sou mesmo exagerado... <br> Adoro um amor inventado..."
             </p>
             <p
-                style="font-size: 1.05em; line-height: 1.8; color: #cca7a7; margin-top: 20px; font-weight: 300; text-align: center;">
-                Olhar para você todos os dias e ver tudo o que estamos construindo é a minha maior certeza. Você é o meu
-                lugar seguro.
+                style="font-size: 1.15em; line-height: 1.6; color: #e5d5d5; margin-top: 20px; font-weight: 400; text-align: center;">
+                As vezes a rotina e o dia a dia anestesia a gente mas sempre vou ser o doido, fiel, ciumento e safado
+                que te conheçeu a 6 meses.
             </p>
         </div>
 
-        <div id="story3"
-            style="display: none; flex-direction: column; justify-content: center; align-items: center; height: 100%; width: 100%; opacity: 0; transition: opacity 0.3s ease; z-index: 5; padding: 0 15px; box-sizing: border-box; text-align: center;">
-            <div style="color: #ff8e53; font-size: 24px; margin-bottom: 15px;">👶🏼👶🏼</div>
-            <p style="font-size: 1.2em; line-height: 1.7; font-weight: 400; color: #fff;">Levi e Serena</p>
+        <!-- FRAME 4: OS GÊMEOS (LEVI E SERENA) -->
+        <div id="story3" class="story-screen">
+            <div aria-hidden="true" style="color: #ff8e53; font-size: 28px; margin-bottom: 10px;">👶🏼👶🏼</div>
+            <p
+                style="font-family: 'Playfair Display', serif; font-size: 1.8em; margin: 0; font-weight: 600; color: #fff;">
+                Levi e Serena</p>
             <div id="contadorBebes"
-                style="font-size: 1em; color: #ff8e53; margin: 15px 0; font-weight: 700; letter-spacing: 1px;">0 dias,
+                style="font-size: 1.1em; color: #ff8e53; margin: 15px 0; font-weight: 700; letter-spacing: 1px;">0 dias,
                 0h, 0m, 0s</div>
-            <p style="font-size: 1.05em; line-height: 1.8; color: #e5d5d5; margin-top: 10px; font-weight: 300;">
-                Dois meses descobrindo que o nosso amor multiplicou. Ver você como mãe deles só me dá mais certeza do
-                nosso "para sempre".
+            <p style="font-size: 1.15em; line-height: 1.6; color: #e5d5d5; margin-top: 10px; font-weight: 400;">
+                Três meses descobrindo que o nosso amor multiplicou. Ver você se doando e sendo a mãe deles é como um
+                sonho e eu amo viver isso com você.
             </p>
         </div>
 
-        <div id="story4"
-            style="display: none; flex-direction: column; justify-content: center; align-items: center; height: 100%; width: 100%; opacity: 0; transition: opacity 0.3s ease; z-index: 5; text-align: center;">
+        <!-- FRAME 5: A NOSSA BASE -->
+        <div id="story4" class="story-screen">
+            <div aria-hidden="true" style="color: #ff8e53; font-size: 28px; margin-bottom: 10px;">🛡️✨</div>
+            <p
+                style="font-family: 'Playfair Display', serif; font-size: 1.8em; margin: 0; font-weight: 600; color: #fff;">
+                O Que Ninguém Vê</p>
+            <p
+                style="font-size: 1.15em; line-height: 1.6; color: #e5d5d5; margin-top: 20px; font-weight: 400; text-align: center;">
+                Todos os dias e noites eu reparo em ti. Se esforçando todas as manhães para realizar seus sonhos de
+                criança e sendo um exemplo e inspiração pra mim de pessoa. Sou muito orgulhoso pelo seu esforço e suas
+                conquitas. </p>
+        </div>
+
+        <!-- FRAME 6: SEIS MESES JUNTOS + SURPRESA -->
+        <div id="story5" class="story-screen">
 
             <button id="revealBtn" onclick="revealSecret(event)"
-                style="font-family: 'Montserrat', sans-serif; background: linear-gradient(45deg, #ff6b6b, #ff8e53); border: none; color: white; padding: 18px 30px; border-radius: 50px; font-weight: bold; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8em; width: 85%; box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3); z-index: 50; position: relative;">
-                Tocar para ler o segredo
+                style="font-family: 'Montserrat', sans-serif; background: linear-gradient(45deg, #ff6b6b, #ff8e53); border: none; color: white; padding: 18px 30px; border-radius: 50px; font-weight: bold; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9em; width: 85%; box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3); z-index: 50; position: relative;">
+                Tocar para ler o segredo dos 6 meses
             </button>
 
             <div id="conteudoOculto"
-                style="display: none; width: 100%; opacity: 0; transition: opacity 0.6s ease; text-align: center; z-index: 5;">
+                style="display: none; width: 100%; opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; text-align: center; z-index: 5;">
                 <p
-                    style="font-family: 'Playfair Display', serif; font-style: italic; color: #ff8e53; font-weight: bold; font-size: 1.35em; line-height: 1.6; margin-bottom: 40px; padding: 0 15px;">
-                    As pessoas nunca entenderão, porque nunca saberão o que é um amor e uma família como a nossa. Te amo
-                    hoje e sempre!
+                    style="font-family: 'Playfair Display', serif; font-style: italic; color: #ff8e53; font-weight: 700; font-size: 1.5em; line-height: 1.6; margin-bottom: 40px; padding: 0 15px;">
+                    Seis meses oficiais. As pessoas nunca entenderão o nosso amor, porque nunca saberão como é estar
+                    100% a vontade e confortavel com alguém. Te amo hoje e sempre!
                 </p>
 
-                <a href="https://open.spotify.com/intl-pt/track/2TE9rkhJYDctxgzak0AnSb?si=a393a6d9fb5b4cd6"
+                <a href="https://open.spotify.com/intl-pt/track/2TE9rkhJYDctxgzak0AnSb?si=6b946fc000614f45"
                     target="_blank" onclick="event.stopPropagation();"
                     style="text-decoration: none; width: 85%; max-width: 280px; display: inline-block; position: relative; z-index: 60;">
                     <div
@@ -109,7 +160,7 @@
                             <path
                                 d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm5.508 17.304c-.216.336-.648.444-.984.228-2.736-1.668-6.18-2.052-10.236-1.128-.384.084-.768-.156-.852-.54-.084-.384.156-.768.54-.852 4.452-1.02 8.268-.576 11.316 1.284.336.216.444.648.216.984zm1.476-3.264c-.276.444-.852.588-1.296.312-3.132-1.92-7.908-2.484-11.604-1.356-.504.156-1.032-.132-1.188-.636-.156-.504.132-1.032.636-1.188 4.224-1.284 9.504-.636 13.14 1.596.444.276.588.852.312 1.284zm.132-3.444C15.096 8.28 8.448 8.064 4.608 9.228c-.612.18-1.248-.156-1.44-.756s.156-1.248.756-1.44c4.428-1.344 11.772-1.092 16.5 1.716.552.324.732 1.032.408 1.584-.324.552-1.032.732-1.584.408z" />
                         </svg>
-                        Ouvir Seu Astral
+                        Ouvir Nossa Música
                     </div>
                 </a>
             </div>
@@ -117,182 +168,7 @@
 
     </div>
 
-    <script>
-        let currentStory = 0;
-        const totalStories = 5;
-        const storyDuration = 6000;
-        let storyTimeout;
-        let startTimestamp;
-        let progressInterval;
-        let secretRevealed = false;
-
-        // AJUSTE AS DATAS REAIS SE PRECISAR
-        const dataNamoro = new Date(2025, 11, 17, 20, 0);
-        const dataNascimentoBebes = new Date(2026, 2, 21, 10, 0);
-
-        function startStoryTimer() {
-            clearTimeout(storyTimeout);
-            clearInterval(progressInterval);
-            startTimestamp = Date.now();
-
-            progressInterval = setInterval(() => {
-                let elapsed = Date.now() - startTimestamp;
-                let percentage = Math.min((elapsed / storyDuration) * 100, 100);
-                document.getElementById('bar' + currentStory).style.width = percentage + '%';
-
-                if (currentStory === 1) atualizarContadorGenerico(dataNamoro, 'contadorNamoro');
-                if (currentStory === 3) atualizarContadorGenerico(dataNascimentoBebes, 'contadorBebes');
-            }, 30);
-
-            storyTimeout = setTimeout(() => {
-                if (currentStory < totalStories - 1) changeStory(1);
-            }, storyDuration);
-        }
-
-        function atualizarContadorGenerico(dataAlvo, idElemento) {
-            const agora = new Date();
-            let diff = Math.abs(agora - dataAlvo);
-            const d = Math.floor(diff / 86400000);
-            const h = Math.floor((diff % 86400000) / 3600000);
-            const m = Math.floor((diff % 3600000) / 60000);
-            const s = Math.floor((diff % 60000) / 1000);
-
-            const elemento = document.getElementById(idElemento);
-            if (elemento) {
-                elemento.innerText = `${d} dias, ${h}h, ${m}m, ${s}s`;
-            }
-        }
-
-        function handleTap(event) {
-            if (event.target.id === 'revealBtn' || (document.getElementById('conteudoOculto') && document.getElementById('conteudoOculto').contains(event.target))) {
-                return;
-            }
-
-            createHeartManual(event);
-
-            if (currentStory === totalStories - 1 && secretRevealed) return;
-
-            const container = document.getElementById('story-container');
-            const rect = container.getBoundingClientRect();
-
-            // Corrige leitura de coordenadas para Touch e Mouse
-            let clientX = event.clientX;
-            if (event.changedTouches && event.changedTouches[0]) {
-                clientX = event.changedTouches[0].clientX;
-            } else if (event.touches && event.touches[0]) {
-                clientX = event.touches[0].clientX;
-            }
-
-            const x = clientX - rect.left;
-
-            if (x < rect.width * 0.35) {
-                changeStory(-1);
-            } else {
-                changeStory(1);
-            }
-        }
-
-        function changeStory(direction) {
-            let next = currentStory + direction;
-            if (next >= 0 && next < totalStories) {
-                document.getElementById('story' + currentStory).style.display = 'none';
-                document.getElementById('story' + currentStory).style.opacity = '0';
-
-                currentStory = next;
-
-                let f = document.getElementById('story' + currentStory);
-                f.style.display = 'flex';
-                setTimeout(() => f.style.opacity = '1', 50);
-
-                for (let i = 0; i < totalStories; i++) {
-                    document.getElementById('bar' + i).style.width = i < currentStory ? "100%" : "0%";
-                }
-                startStoryTimer();
-            }
-        }
-
-        function createHeartManual(e) {
-            let clientX = e.clientX;
-            let clientY = e.clientY;
-
-            if (e.changedTouches && e.changedTouches[0]) {
-                clientX = e.changedTouches[0].clientX;
-                clientY = e.changedTouches[0].clientY;
-            } else if (e.touches && e.touches[0]) {
-                clientX = e.touches[0].clientX;
-                clientY = e.touches[0].clientY;
-            }
-
-            if (clientX === undefined || clientY === undefined) return;
-
-            const container = document.getElementById('story-container');
-            const rect = container.getBoundingClientRect();
-            const x = clientX - rect.left;
-            const y = clientY - rect.top;
-
-            const h = document.createElement('div');
-            h.innerText = '❤';
-            h.style.cssText = `position:absolute; left:${x - 10}px; top:${y - 10}px; font-size:24px; color:#ff6b6b; z-index:100; pointer-events:none; animation: float 1s forwards;`;
-            container.appendChild(h);
-            setTimeout(() => h.remove(), 1000);
-        }
-
-        function revealSecret(e) {
-            if (e) e.stopPropagation();
-
-            clearInterval(progressInterval);
-            clearTimeout(storyTimeout);
-            document.getElementById('bar' + currentStory).style.width = "100%";
-
-            const btn = document.getElementById('revealBtn');
-            const rect = btn.getBoundingClientRect();
-            const midX = rect.left + (rect.width / 2);
-            const midY = rect.top + (rect.height / 2);
-
-            for (let i = 0; i < 10; i++) {
-                setTimeout(() => {
-                    let driftX = midX + (Math.random() * 80 - 40);
-                    let driftY = midY + (Math.random() * 40 - 20);
-                    createHeartManual({ clientX: driftX, clientY: driftY });
-                }, i * 40);
-            }
-
-            secretRevealed = true;
-            btn.style.display = 'none';
-
-            const c = document.getElementById('conteudoOculto');
-            c.style.display = 'block';
-            setTimeout(() => c.style.opacity = '1', 50);
-        }
-
-        window.onload = startStoryTimer;
-    </script>
-
-    <style>
-        @keyframes pulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.1);
-            }
-        }
-
-        @keyframes float {
-            0% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-            100% {
-                opacity: 0;
-                transform: translateY(-80px) rotate(20deg);
-            }
-        }
-    </style>
+    <script src="script.js"></script>
 </body>
 
 </html>
